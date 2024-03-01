@@ -27,6 +27,7 @@ pub enum Command {
 }
 
 mod my_module {
+    use std::ops::{Add, Mul};
 
     use super::Command;
 
@@ -37,15 +38,13 @@ mod my_module {
         for (string, command) in input.iter() {
             // TODO: Complete the function body. You can do it!
             match command {
-                Command::Uppercase => {
-                    output.push(string.to_uppercase());
+                Command::Append(num) => {
+                    output.push(format!("{string}{}", "bar".repeat(*num)));
                 }
                 Command::Trim => {
                     output.push(string.trim().to_string());
                 }
-                Command::Append(num) => {
-                    output.push(format!("{string}{}", "bar".repeat(*num)));
-                }
+                Command::Uppercase => output.push(string.to_uppercase()),
             }
         }
         output
@@ -55,6 +54,7 @@ mod my_module {
 #[cfg(test)]
 mod tests {
     // TODO: What do we need to import to have `transformer` in scope?
+    use super::my_module::transformer;
     use super::Command;
     use crate::my_module::transformer;
 
