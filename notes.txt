@@ -1,4 +1,0 @@
-exercises to study indepth:
-
-- hashmaps3.rs
-- options2.rs
