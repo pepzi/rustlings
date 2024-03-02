@@ -6,8 +6,6 @@
 // Execute `rustlings hint iterators2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 // Step 1.
 // Complete the `capitalize_first` function.
 // "hello" -> "Hello"
@@ -15,7 +13,13 @@ pub fn capitalize_first(input: &str) -> String {
     let mut c = input.chars();
     match c.next() {
         None => String::new(),
-        Some(first) => ???,
+        Some(first) => {
+            format!(
+                "{}{}",
+                first.to_uppercase(),
+                c.as_str()
+            )
+        }
     }
 }
 
@@ -23,8 +27,13 @@ pub fn capitalize_first(input: &str) -> String {
 // Apply the `capitalize_first` function to a slice of string slices.
 // Return a vector of strings.
 // ["hello", "world"] -> ["Hello", "World"]
-pub fn capitalize_words_vector(words: &[&str]) -> Vec<String> {
-    vec![]
+pub fn capitalize_words_vector(
+    words: &[&str],
+) -> Vec<String> {
+    words
+        .iter()
+        .map(|word| capitalize_first(word))
+        .collect()
 }
 
 // Step 3.
@@ -32,8 +41,14 @@ pub fn capitalize_words_vector(words: &[&str]) -> Vec<String> {
 // Return a single string.
 // ["hello", " ", "world"] -> "Hello World"
 pub fn capitalize_words_string(words: &[&str]) -> String {
-    String::new()
+    words
+        .iter()
+        .map(|word| capitalize_first(word))
+        .collect()
 }
+
+// Explanation: Step 2 and 3 can use the same code because .collect() knows
+// the return value of the function, and collect the words to that type.
 
 #[cfg(test)]
 mod tests {
@@ -52,12 +67,18 @@ mod tests {
     #[test]
     fn test_iterate_string_vec() {
         let words = vec!["hello", "world"];
-        assert_eq!(capitalize_words_vector(&words), ["Hello", "World"]);
+        assert_eq!(
+            capitalize_words_vector(&words),
+            ["Hello", "World"]
+        );
     }
 
     #[test]
     fn test_iterate_into_string() {
         let words = vec!["hello", " ", "world"];
-        assert_eq!(capitalize_words_string(&words), "Hello World");
+        assert_eq!(
+            capitalize_words_string(&words),
+            "Hello World"
+        );
     }
 }

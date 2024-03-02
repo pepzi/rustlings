@@ -7,6 +7,8 @@ The following is a list of exercises I need to study more
 
     hashmaps3
     options2
+    iterators4
+    iterators5
 
 ##### Useful knowledge
 
