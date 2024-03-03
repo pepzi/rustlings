@@ -9,6 +9,8 @@ The following is a list of exercises I need to study more
     options2
     iterators4
     iterators5
+    threads1
+    threads2
 
 ##### Useful knowledge
 
